@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="th">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>ESP32 Valve Control</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  
+  <h1>ควบคุมวาล์วน้ำ</h1>
+  <div class="container">
+    <button onclick="controlValve('on')">เปิดวาล์ว</button>
+    <button onclick="controlValve('off')">ปิดวาล์ว</button>
+    <p class="status" id="status">รอคำสั่ง</p>
+  </div>
+  <script src="main.js"></script>
 </body>
-
 </html>

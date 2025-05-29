@@ -1,0 +1,34 @@
+name: Build ESP32-S3 Firmware
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install ESP Toolchain
+        run: |
+          rustup target add riscv32imac-esp-espidf
+          sudo apt-get update
+          sudo apt-get install -y git curl python3 python3-pip cmake ninja-build
+
+      - name: Build Firmware
+        run: cargo build --release --target riscv32imac-esp-espidf
+
+      - name: Upload to GitHub Releases
+        uses: softprops/action-gh-release@v1
+        with:
+          name: "Firmware OTA"
+          tag_name: "latest"
+          files: target/riscv32imac-esp-espidf/release/control-the-esp32-board-with-rust

@@ -1,2 +1,2 @@
-[target.xtensa-esp32-espidf]
+[target.riscv32imac-esp-espidf]
 runner = "espflash flash --monitor"
