@@ -1,0 +1,10 @@
+[package]
+name = "control-the-esp32-board-with-rust"
+version = "0.1.0"
+authors = ["Your Name <you@example.com>"]
+  edition = "2021"
+  
+  [dependencies]
+  esp-idf-hal = "0.43"
+  esp-idf-sys = "0.34"
+  esp-idf-svc = "0.47"
