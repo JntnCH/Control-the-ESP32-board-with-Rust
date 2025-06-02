@@ -1,0 +1,198 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  padding: 2rem;
+  background-color: #40273A;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+}
+
+/* เอฟเฟกต์เมื่อเลื่อนหน้าจอขึ้น - ซ่อนกล่อง */
+nav.hide {
+  transform: translateY(-100%);
+}
+
+.nav-con {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ESP32-menu {
+  display: flex;
+  transition: all 0.3s ease;
+}
+
+.ESP32-menu a {
+  color: white;
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #DD9696;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  padding-top: 80px; /* เพิ่ม padding-top เพื่อชดเชยความสูงของ nav ที่ fixed */
+}
+
+/* หัวข้อวาล์วน้ำ */
+h1 {
+  width: 100%;
+  margin: 0;
+  padding: 20px 0;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 100;
+}
+
+/* หัวข้อส่วนควบคุมไฟฟ้า */
+h2 {
+  margin: 0;
+  padding: 15px 0;
+  font-size: 40px;
+  font-weight: bold;
+  z-index: 90;
+  width: 100%;
+}
+
+/* ส่วนของวาล์วน้ำ */
+.valve-group {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 20px 10px;
+  margin-top: 0px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.valve-container {
+  background-color: #F7F0B5;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 180px;
+  flex: 0 0 auto;
+}
+
+/* ส่วนของควบคุมไฟฟ้า */
+.electric-inside,
+.electric-outside {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 20px 10px;
+  margin-top: 0px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.control-box {
+  background-color: #F7F0B5;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 180px;
+  flex: 0 0 auto;
+}
+
+/* ปุ่มควบคุม */
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.open-button,
+.btn-on {
+  background-color: #28a745;
+  color: white;
+}
+
+.close-button,
+.btn-off {
+  background-color: #dc3545;
+  color: white;
+}
+
+.status {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+/* สไตล์สำหรับ scrollbar */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* การตอบสนองสำหรับอุปกรณ์มือถือ */
+@media (max-width: 768px) {
+  body {
+    padding-top: 70px; /* ลดลงเล็กน้อยสำหรับมือถือ */
+    margin: 0;
+  }
+  
+  nav {
+    padding: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 30px;
+    padding-top: 20px;
+    margin: 0;
+  }
+  
+  h2 {
+    font-size: 30px;
+    padding: 10px 0;
+  }
+  
+  .valve-container,
+  .control-box {
+    min-width: 150px;
+    padding: 15px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

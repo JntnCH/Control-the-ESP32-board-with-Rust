@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESP32-S3 Control</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- เพิ่ม MQTT script ก่อน -->
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    <!-- เพิ่ม defer เพื่อให้โหลด script.js หลังจาก DOM พร้อมใช้งาน -->
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <nav>
+        <div class="container" div>
+            <div class="nav-con" div>
+                <div class="ESP32-menu"><a href="#">การควบคุม ESP32 ชายเจ</a></div>
+                <ul class="menu">
+                    <li><a href="">หน้าหลัก</a></li>
+                    <li><a href="">บอร์ด</a></li>
+                    <li><a href="">การใช้งาน</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <h1>ควบคุม วาล์วน้ำ</h1>
+    <div class="valve-group">
+        <div class="valve-container" id="valve-1">
+            <h3>วาล์วน้ำ 1</h3>
+            <button class="close-button" onclick="controlValve(1, 'closed')">ปิดวาล์ว</button>
+            <button class="open-button" onclick="controlValve(1, 'open')">เปิดวาล์ว</button>
+            <p>สถานะ: <span class="status" id="status-1">ปิด</span></p>
+        </div>
+        <div class="valve-container" id="valve-2">
+            <h3>วาล์วน้ำ 2</h3>
+            <button class="close-button" onclick="controlValve(2, 'closed')">ปิดวาล์ว</button>
+            <button class="open-button" onclick="controlValve(2, 'open')">เปิดวาล์ว</button>
+            <p>สถานะ: <span class="status" id="status-2">ปิด</span></p>
+        </div>
+        <div class="valve-container" id="valve-3">
+            <h3>วาล์วน้ำ 3</h3>
+            <button class="close-button" onclick="controlValve(3, 'closed')">ปิดวาล์ว</button>
+            <button class="open-button" onclick="controlValve(3, 'open')">เปิดวาล์ว</button>
+            <p>สถานะ: <span class="status" id="status-3">ปิด</span></p>
+        </div>
+        <div class="valve-container" id="valve-4">
+            <h3>วาล์วน้ำ 4</h3>
+            <button class="close-button" onclick="controlValve(4, 'closed')">ปิดวาล์ว</button>
+            <button class="open-button" onclick="controlValve(4, 'open')">เปิดวาล์ว</button>
+            <p>สถานะ: <span class="status" id="status-4">ปิด</span></p>
+        </div>
+        <div class="valve-container" id="valve-5">
+            <h3>วาล์วน้ำ 5</h3>
+            <button class="close-button" onclick="controlValve(5, 'closed')">ปิดวาล์ว</button>
+            <button class="open-button" onclick="controlValve(5, 'open')">เปิดวาล์ว</button>
+            <p>สถานะ: <span class="status" id="status-5">ปิด</span></p>
+        </div>
+        <div class="valve-container" id="valve-6">
+            <h3>วาล์วน้ำ 6</h3>
+            <button class="close-button" onclick="controlValve(6, 'closed')">ปิดวาล์ว</button>
+            <button class="open-button" onclick="controlValve(6, 'open')">เปิดวาล์ว</button>
+            <p>สถานะ: <span class="status" id="status-6">ปิด</span></p>
+        </div>
+    </div>
+    
+    <!-- กลุ่มควบคุมไฟฟ้าภายใน -->
+    <section>
+        <h2>ควบคุมไฟฟ้าภายใน</h2>
+        <div class="electric-inside">
+            <div class="control-box">
+                <h3>ไฟภายใน 1</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายใน 2</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายใน 3</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายใน 4</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายใน 5</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายใน 6</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- กลุ่มควบคุมไฟฟ้าภายนอก -->
+    <section>
+        <h2>ควบคุมไฟฟ้าภายนอก</h2>
+        <div class="electric-outside">
+            <div class="control-box">
+                <h3>ไฟภายนอก 1</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายนอก 2</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายนอก 3</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายนอก 4</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายนอก 5</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+            <div class="control-box">
+                <h3>ไฟภายนอก 6</h3>
+                <button class="btn-off">ปิดไฟ</button>
+                <button class="btn-on">เปิดไฟ</button>
+                <p>สถานะ: <span class="status">ปิด</span></p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
